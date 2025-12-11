@@ -13,6 +13,7 @@ django-import-export==4.3.14
 django-widget-tweaks==1.5.0
 geographiclib==2.1
 geopy==2.4.1
+gunicorn==23.0.0  # ADD THIS LINE - essential for deployment
 h11==0.16.0
 httpcore==1.0.9
 httpx==0.28.1
