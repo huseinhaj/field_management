@@ -38,9 +38,13 @@ EMAIL_TIMEOUT = 30
 SECRET_KEY = 'django-insecure-fb+ynjt%l-8!48f7(t*_xekmcj%lkbo9m%p$qs5pn=moj@@41i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = False
+ALLOWED_HOSTS = [
+    'field-management-3.onrender.com',
+    '*.onrender.com',
+    'localhost',
+    '127.0.0.1'
+]
 
 # ... (rest of your settings remain the same) ...
 
@@ -145,7 +149,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
