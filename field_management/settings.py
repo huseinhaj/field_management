@@ -39,13 +39,14 @@ SECRET_KEY = 'django-insecure-fb+ynjt%l-8!48f7(t*_xekmcj%lkbo9m%p$qs5pn=moj@@41i
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+
+
 ALLOWED_HOSTS = [
-    'field-management-3.onrender.com',
+    'industrialtrainning-management-4mjr.onrender.com',
     '*.onrender.com',
     'localhost',
     '127.0.0.1'
 ]
-
 # ... (rest of your settings remain the same) ...
 
 
