@@ -31,7 +31,6 @@ EMAIL_USE_SSL = False
 
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'huseinhaj09@gmail.com')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'lexmdrrljvyxqplo')
-
 DEFAULT_FROM_EMAIL = 'Field Management System <huseinhaj09@gmail.com>'
 SERVER_EMAIL = 'huseinhaj09@gmail.com'
 EMAIL_TIMEOUT = 30
