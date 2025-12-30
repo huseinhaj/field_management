@@ -28,8 +28,10 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-EMAIL_HOST_USER = 'huseinhaj09@gmail.com'
-EMAIL_HOST_PASSWORD = 'lexmdrrljvyxqplo'  # No spaces
+
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'huseinhaj09@gmail.com')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'lexmdrrljvyxqplo')
+```
 DEFAULT_FROM_EMAIL = 'Field Management System <huseinhaj09@gmail.com>'
 SERVER_EMAIL = 'huseinhaj09@gmail.com'
 EMAIL_TIMEOUT = 30
@@ -42,8 +44,7 @@ DEBUG = False
 
 
 ALLOWED_HOSTS = [
-    'industrialtrainning-management-4mjr.onrender.com',
-    '*.onrender.com',
+    '.onrender.com',
     'localhost',
     '127.0.0.1'
 ]
@@ -103,16 +104,29 @@ WSGI_APPLICATION = 'field_management.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'field_db',
-        'USER': 'hajiuser',
-        'PASSWORD': 'hajipassword',
-        'HOST': 'localhost',
-        'PORT': '5432',
+import dj_database_url
+
+# Use DATABASE_URL from Render environment
+if os.environ.get('DATABASE_URL'):
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=os.environ.get('DATABASE_URL'),
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
     }
-}
+else:
+    # Fallback for local development
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get('DB_NAME', 'field_db'),
+            'USER': os.environ.get('DB_USER', 'hajiuser'),
+            'PASSWORD': os.environ.get('DB_PASSWORD', 'hajipassword'),
+            'HOST': os.environ.get('DB_HOST', 'localhost'),
+            'PORT': os.environ.get('DB_PORT', '5432'),
+        }
+    }
 
 
 
@@ -158,3 +172,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'login'  # Name of your login URL pattern
 LOGIN_REDIRECT_URL = 'dashboard'  # Where to redirect after login
 LOGOUT_REDIRECT_URL = 'login'  # Where to redirect after logou
+
